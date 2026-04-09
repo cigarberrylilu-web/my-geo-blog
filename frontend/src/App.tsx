@@ -19,14 +19,6 @@ export default function App() {
             <main className="relative w-full h-screen overflow-hidden">
               <MapContainer />
               <NextDestination />
-              <div className="absolute bottom-8 left-8 z-40 pointer-events-none">
-                <div className="p-4 bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl text-white max-w-xs">
-                  <h2 className="text-lg font-bold mb-1">Footprint Map</h2>
-                  <p className="text-xs text-white/60 leading-relaxed">
-                    Interactive visualization of my travels. Click on markers to see photos and stories from each location.
-                  </p>
-                </div>
-              </div>
             </main>
           } />
 

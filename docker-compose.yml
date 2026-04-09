@@ -14,6 +14,7 @@ services:
       - "4000:80"
     depends_on:
       - geo-api
+      - quartz-notes
     networks:
       geo-net:
         aliases:
@@ -53,9 +54,24 @@ services:
           - geo-api
 
   # ─────────────────────────────────────────────
-  # Quartz Notes: 已有容器，已加入 geo-net 网络
-  # nginx 将 /notes/ 代理至 quartz-notes:8080
+  # Quartz 4 知识库
+  # nginx 将 /notes/ 和 /quartz/ 代理至此容器
+  # 同时 4001 端口对外开放（完整笔记导航）
   # ─────────────────────────────────────────────
+  quartz-notes:
+    image: uhub.service.ucloud.cn/syyy/quartz:sha-ec00a40
+    container_name: quartz-notes
+    restart: unless-stopped
+    volumes:
+      - /opt/filebro_notes/content:/usr/src/app/content:ro
+    ports:
+      - "4001:8080"
+    expose:
+      - "8080"
+    networks:
+      geo-net:
+        aliases:
+          - quartz-notes
 
 networks:
   geo-net:
