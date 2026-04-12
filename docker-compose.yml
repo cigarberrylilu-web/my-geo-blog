@@ -38,11 +38,11 @@ services:
       - DATA_DIR=/app/data
       - CONTENT_PATH=/app/content
       # Cloudflare R2 (optional — enable when configured)
-      # - R2_ACCOUNT_ID=${R2_ACCOUNT_ID}
-      # - R2_ACCESS_KEY=${R2_ACCESS_KEY}
-      # - R2_SECRET_KEY=${R2_SECRET_KEY}
-      # - R2_BUCKET=${R2_BUCKET}
-      # - R2_PUBLIC_URL=${R2_PUBLIC_URL}
+      - R2_ACCOUNT_ID=${R2_ACCOUNT_ID}
+      - R2_ACCESS_KEY=${R2_ACCESS_KEY}
+      - R2_SECRET_KEY=${R2_SECRET_KEY}
+      - R2_BUCKET=${R2_BUCKET}
+      - R2_PUBLIC_URL=${R2_PUBLIC_URL}
     volumes:
       - ./data:/app/data               # Persistent locations.json & app-config.json
       - ./content:/app/content:ro      # Read-only: Quartz notes (symlink to filebro_notes)

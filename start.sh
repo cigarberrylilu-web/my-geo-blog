@@ -1,5 +1,7 @@
 #!/bin/bash
 set -e
+cd /opt/geo-blog/frontend
+npm install clsx
 
 cd /opt/geo-blog
 

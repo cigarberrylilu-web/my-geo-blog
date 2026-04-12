@@ -92,13 +92,13 @@ export function NotesSection() {
                 <div className="space-y-2">
                   <h2 className="text-3xl font-bold text-white tracking-tight">Digital Garden</h2>
                   <p className="text-white/60 max-w-md mx-auto leading-relaxed">
-                    My interconnected second brain powered by Quartz 4.
-                    Deep dives into software engineering, geography, and personal growth.
+                    基于Quartz 4构建.
+                    DeepSeek总结与归纳.
                   </p>
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-2">
-                  {["React", "Node.js", "GIS", "Productivity"].map(tag => (
+                  {["Cloud Computing", "Linux", "Datacom", "AI", "docker"].map(tag => (
                     <span key={tag} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-white/60">
                       #{tag}
                     </span>
@@ -106,7 +106,7 @@ export function NotesSection() {
                 </div>
 
                 <div className="flex items-center gap-2 px-8 py-3 bg-white text-black font-bold rounded-full group-hover:bg-blue-400 group-hover:text-white transition-all shadow-xl">
-                  Enter Knowledge Base <ExternalLink className="w-4 h-4" />
+                  进入Quartz <ExternalLink className="w-4 h-4" />
                 </div>
               </div>
 
