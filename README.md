@@ -112,6 +112,7 @@ APP_URL=http://localhost
 ```bash
 # 进入项目目录
 cd /opt/geo-blog
+mv .env.example .env
 
 # 执行一键启动脚本
 sh start.sh
