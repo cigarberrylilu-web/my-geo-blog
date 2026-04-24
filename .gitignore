@@ -1,46 +1,44 @@
-# Dependencies
+# 环境变量文件
+.env
+.env.*
+!.env.example
+
+# 依赖目录
 node_modules/
 frontend/node_modules/
-api/node_modules/
 
-# Build outputs
+# 构建输出
 dist/
 build/
+frontend/dist/
+frontend/build/
+
+# 日志文件
 *.log
+npm-debug.log*
 
-# Environment files (敏感信息)
-.env
-.env.local
-.env.*.local
-frontend/.env
-api/.env
+# 操作系统文件
+.DS_Store
+Thumbs.db
 
-# IDE
+# IDE 配置
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# OS
-.DS_Store
-Thumbs.db
-
-# Docker/Podman
-*.pid
-*.lock
-
-# Data directories (数据文件不提交)
-data/*
-!data/.gitkeep
-content/*
-!content/.gitkeep
-
-# Temporary files
-tmp/
+# 数据文件（根据你的需求）
+*.db
+*.sqlite
+data/
+uploads/
 temp/
-*.tmp
+add/
 
-# Podman storage
-.containers/
-.local/
-.env
+# 本地配置文件
+config.local.*
+*.local
+
+# 备份文件
+*.backup
+backup-*/
