@@ -63,12 +63,13 @@ services:
     container_name: quartz-notes
     restart: unless-stopped
     volumes:
-      - /opt/geo-blog/content:/usr/src/app/content:ro
+      - ./content:/usr/src/app/content:ro   # 注意：改成相对路径 ./content，方便 Zeabur 自动映射
     ports:
       - "4001:8080"
     expose:
       - "8080"
-    command: ["sh", "-c", "caddy run --config /etc/caddy/Caddyfile"]   # 新增这一行
+    entrypoint: ["/bin/sh", "-c"]            # 用 sh 替换原来的 entrypoint
+    command: ["exec caddy run --config /etc/caddy/Caddyfile"]  # 真正运行的命令
     networks:
       geo-net:
         aliases:
