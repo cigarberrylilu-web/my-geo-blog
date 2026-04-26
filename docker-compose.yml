@@ -17,10 +17,7 @@ services:
     depends_on:
       - geo-api
       - quartz-notes
-    networks:
-      geo-net:
-        aliases:
-          - geo-frontend
+    
 
   # ─────────────────────────────────────────────
   # API: Lightweight Node.js backend
@@ -50,10 +47,7 @@ services:
       - ./content:/app/content:ro      # Read-only: Quartz notes (symlink to filebro_notes)
     expose:
       - "3001"
-    networks:
-      geo-net:
-        aliases:
-          - geo-api
+    
 
   # ─────────────────────────────────────────────
   # Quartz 4 知识库
@@ -77,6 +71,4 @@ services:
       #  aliases:
        #   - quartz-notes
 
-networks:
-  geo-net:
-    external: true   # 使用已存在的 podman 网络，不重新创建
+
