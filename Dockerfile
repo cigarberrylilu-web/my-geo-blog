@@ -1,26 +1,26 @@
-FROM uhub.service.ucloud.cn/syyy/node:20-alpine AS builder
-# 接收 Zeabur 传来的 Mapbox Token
+FROM node:20-alpine AS builder
 ARG VITE_MAPBOX_ACCESS_TOKEN
 ENV VITE_MAPBOX_ACCESS_TOKEN=$VITE_MAPBOX_ACCESS_TOKEN
-
 WORKDIR /app
-
 COPY frontend/package.json ./
 RUN npm install
-
 COPY frontend/ ./
-ENV VITE_MAPBOX_ACCESS_TOKEN=pk.eyJ1IjoiY2lnYXJiZXJyeSIsImEiOiJjbW9mNmw0bGcwN2U4Mnlva2RlM21rZDI2In0.IxDghpmIPSiKGKH8srqVVw
 RUN npm run build
 
-# --- Production Stage ---
-FROM nginx:alpine
+WORKDIR /api-build
+COPY api/package.json ./
+RUN npm install
+COPY api/ ./
+RUN npx tsc --outDir dist
 
+FROM node:20-alpine
+RUN apk add --no-cache nginx
 COPY --from=builder /app/dist /usr/share/nginx/html
-COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
-COPY nginx/start.sh /start.sh
-RUN chmod +x /start.sh
-
-EXPOSE 80
-
-# 👇 简单可靠的启动命令：nginx 前台运行
-CMD ["nginx", "-g", "daemon off;"]
+WORKDIR /api
+COPY --from=builder /api-build/dist ./dist
+COPY --from=builder /api-build/node_modules ./node_modules
+COPY api/package.json ./
+COPY nginx/nginx.conf /etc/nginx/http.d/default.conf
+RUN printf '#!/bin/sh\ncd /api && node dist/server.js &\nnginx -g "daemon off;"\n' > /start.sh && chmod +x /start.sh
+EXPOSE 8080 3001
+CMD ["/start.sh"]
