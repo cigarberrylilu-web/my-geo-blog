@@ -15,6 +15,7 @@ services:
     depends_on:
       - geo-api
       - quartz-notes
+    command: ["caddy", "file-server", "--root", "/usr/share/caddy", "--listen", ":80"]   # 👈 添加这行
     networks:
       geo-net:
         aliases:
