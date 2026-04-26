@@ -7,7 +7,7 @@ services:
   geo-frontend:
     build:
       context: .
-      dockerfile: Dockerfile.frontend
+      dockerfile: Dockerfile
       args:
         - VITE_MAPBOX_ACCESS_TOKEN=${VITE_MAPBOX_ACCESS_TOKEN}
     container_name: geo-frontend
