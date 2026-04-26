@@ -1,4 +1,7 @@
 FROM uhub.service.ucloud.cn/syyy/node:20-alpine AS builder
+# 接收 Zeabur 传来的 Mapbox Token
+ARG VITE_MAPBOX_ACCESS_TOKEN
+ENV VITE_MAPBOX_ACCESS_TOKEN=$VITE_MAPBOX_ACCESS_TOKEN
 
 WORKDIR /app
 
@@ -18,7 +21,5 @@ RUN chmod +x /start.sh
 
 EXPOSE 80
 
-# 强制 Caddy 监听 80 端口
-RUN echo ':80 { root * /usr/share/caddy file_server }' > /etc/caddy/Caddyfile
-# 确保启动时用我们写的 Caddyfile
-CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]
+# 👇 简单可靠的启动命令：nginx 前台运行
+CMD ["nginx", "-g", "daemon off;"]
