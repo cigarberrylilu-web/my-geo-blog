@@ -68,6 +68,7 @@ services:
       - "4001:8080"
     expose:
       - "8080"
+    command: ["sh", "-c", "caddy run --config /etc/caddy/Caddyfile"]   # 新增这一行
     networks:
       geo-net:
         aliases:
