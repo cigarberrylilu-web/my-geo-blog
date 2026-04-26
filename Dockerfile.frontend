@@ -9,6 +9,7 @@ COPY frontend/package.json ./
 RUN npm install
 
 COPY frontend/ ./
+ENV VITE_MAPBOX_ACCESS_TOKEN=pk.eyJ1IjoiY2lnYXJiZXJyeSIsImEiOiJjbW9mNmw0bGcwN2U4Mnlva2RlM21rZDI2In0.IxDghpmIPSiKGKH8srqVVw
 RUN npm run build
 
 # --- Production Stage ---
