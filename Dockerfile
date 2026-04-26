@@ -21,6 +21,6 @@ COPY --from=builder /api-build/dist ./dist
 COPY --from=builder /api-build/node_modules ./node_modules
 COPY api/package.json ./
 COPY nginx/nginx.conf /etc/nginx/http.d/default.conf
-RUN printf '#!/bin/sh\ncd /api && node dist/server.js &\nnginx -g "daemon off;"\n' > /start.sh && chmod +x /start.sh
+RUN printf '#!/bin/sh\ncd /api && PORT=3001 node dist/server.js &\nnginx -g "daemon off;"\n' > /start.sh && chmod +x /start.sh
 EXPOSE 8080 3001
 CMD ["/start.sh"]
