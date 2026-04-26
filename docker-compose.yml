@@ -59,22 +59,22 @@ services:
   # nginx 将 /notes/ 和 /quartz/ 代理至此容器
   # 同时 4001 端口对外开放（完整笔记导航）
   # ─────────────────────────────────────────────
-  quartz-notes:
-    image: uhub.service.ucloud.cn/syyy/quartz:sha-ec00a40
-    container_name: quartz-notes
-    restart: unless-stopped
-    volumes:
-      - ./content:/usr/src/app/content:ro   # 注意：改成相对路径 ./content，方便 Zeabur 自动映射
-    ports:
-      - "4001:8080"
-    expose:
-      - "8080"
-    entrypoint: ["/bin/sh", "-c"]            # 用 sh 替换原来的 entrypoint
-    command: ["exec caddy run --config /etc/caddy/Caddyfile"]  # 真正运行的命令
-    networks:
-      geo-net:
-        aliases:
-          - quartz-notes
+  #quartz-notes:
+    #image: uhub.service.ucloud.cn/syyy/quartz:sha-ec00a40
+    #container_name: quartz-notes
+    #restart: unless-stopped
+    #volumes:
+     # - ./content:/usr/src/app/content:ro   # 注意：改成相对路径 ./content，方便 Zeabur 自动映射
+    #ports:
+     # - "4001:8080"
+    #expose:
+     # - "8080"
+    #entrypoint: ["/bin/sh", "-c"]            # 用 sh 替换原来的 entrypoint
+    #command: ["exec caddy run --config /etc/caddy/Caddyfile"]  # 真正运行的命令
+    #networks:
+     # geo-net:
+      #  aliases:
+       #   - quartz-notes
 
 networks:
   geo-net:
