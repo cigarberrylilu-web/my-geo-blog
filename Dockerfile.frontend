@@ -19,3 +19,4 @@ RUN chmod +x /start.sh
 EXPOSE 80
 
 CMD ["/start.sh"]
+RUN echo ':80 { root * /usr/share/caddy file_server }' > /etc/caddy/Caddyfile
