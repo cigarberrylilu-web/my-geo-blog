@@ -18,5 +18,7 @@ RUN chmod +x /start.sh
 
 EXPOSE 80
 
-CMD ["/start.sh"]
+# 强制 Caddy 监听 80 端口
 RUN echo ':80 { root * /usr/share/caddy file_server }' > /etc/caddy/Caddyfile
+# 确保启动时用我们写的 Caddyfile
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]
